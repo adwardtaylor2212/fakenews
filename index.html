@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">TruthGuard</h1>
+           
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#" onclick="scrollToSection('features')">Features</a></li>
+                    <li><a href="#" onclick="scrollToSection('how-it-works')">How It Works</a></li>
+                    <li><a href="#" onclick="scrollToSection('about-us')">About Us</a></li>
+                    <li><a href="#" onclick="scrollToSection('contact')">Contact</a></li>
+                </ul>
+                <div class="login">
+                    <h1>FAKE NEWS DETECTOR</h1>
+                    <form id="news-form" action="{{ url_for('predict')}}" method="POST">
+                        <textarea id="message" name="message" rows="6" cols="50" required="required" style="font-size: 18pt">{{ request.form.message }}</textarea>
+                        <br><br>
+                        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+                        <div class="results">
+                            {% if prediction == ['FAKE'] %}
+                            <h2 style="color:red;">SPAM NEWS </h2>
+                            {% elif prediction == ['REAL'] %}
+                            <h2 style="color:green;"><b>REAL NEWS</b></h2>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-heading">Don't Get Fooled by Fake News!</h1>
+            <p class="hero-subheading">Empower Yourself with TruthGuard - Your Ultimate Fake News Detector</p>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-heading">Key Features</h2>
+            
+           
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <h3>AI-powered Fact-Checking</h3>
+                <p>Our advanced AI algorithm verifies the authenticity of information.</p>
+            </div>
+            
+            
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <h3>User-friendly Interface</h3>
+                <p>Intuitive design makes it easy for anyone to use our platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-heading">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Enter or Paste Article</h3>
+                    <p>Copy and paste the URL of the news article or directly paste the article content into TruthGuard.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>AI Analysis</h3>
+                    <p>Our AI algorithm analyzes the content, checking for credibility and accuracy.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receive Feedback</h3>
+                    <p>Get instant feedback on whether the news is verified or flagged as potentially fake.</p>
+                </div>
+            </div>
+        </div>
+    </section><section class="testimonials">
+        <div class="container">
+            <h2 class="section-heading">Testimonials</h2>
+            <div class="testimonial">
+                <p>"TruthGuard helped me distinguish between real and fake news easily. Highly recommended!"</p>
+                <p class="testimonial-author">- John Doe</p>
+            </div>
+            <div class="testimonial">
+                <p>"I love how intuitive TruthGuard is. It's like having a fact-checker in my pocket!"</p>
+                <p class="testimonial-author">- Jane Smith</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-us" id="about-us">
+        <div class="container">
+            <h2 class="section-heading">About Us</h2>
+            <p class="section-description">Learn more about our organization and mission.</p>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>We are dedicated to combating misinformation and fake news by providing tools and resources for accurate news detection.</p>
+                    <h3>Our Vision</h3>
+                    <p>To create a more informed society where individuals have the ability to distinguish between reliable and unreliable information.</p>
+                </div>
+                <div class="about-team">
+                    <h3>Our Team</h3>
+                    <ul>
+                        <li>Niranjan Menon</li>
+                        <li>Abin Sundar</li>
+                        <li>Meenakshi Chandran</li>
+                        <li>Meghna Murali</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog">
+        <div class="container">
+            <h2 class="section-heading">Latest Articles</h2>
+            <div class="article">
+                <h3>How to Spot Fake News: A Guide for Everyone</h3>
+                <p class="article-date">Published on January 15, 2024</p>
+                <p>Welcome to our blog section! Here you'll find insightful articles on a variety of topics related to media literacy, fact-checking, and combating misinformation. Our team of experts is dedicated to providing you with accurate information and practical tips to help you navigate the complex world of news and information.</p>
+                
+            </div>
+            <div class="article">
+                <h3>The Role of AI in Combating Misinformation</h3>
+                <p class="article-date">Published on February 3, 2024</p>
+                <p>Whether you're a concerned citizen, a student, or a professional, we've got something for everyone. Stay informed, stay vigilant, and together, let's fight fake news!"</p>
+               
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-heading">Contact Us</h2>
+            <p class="section-description">Have questions or feedback? Get in touch with us!</p>
+            <div class="contact-info">
+               
+                <div class="contact-details">
+                    <!-- Contact Information -->
+                    <p>Email: contact@yourfakenewsdetection@gmail.com</p>
+                    <p>Phone: +91 2424245555 </p>
+                    <p>abc street,abc City,abc Country</p>
+                    <!-- Social Media Links -->
+                    <div class="social-media-links">
+                        <a href="https://twitter.com/yourfakenewsdetection" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://facebook.com/yourfakenewsdetection" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://linkedin.com/company/yourfakenewsdetection" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const predictBtn = document.getElementById('predict-btn');
+
+            predictBtn.addEventListener('click', function() {
+                window.location.href = '#';
+            });
+        });
+
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
+    
+    
